@@ -1,7 +1,4 @@
-package kasus2restraurant; /**
- *
- * @author Adriana Anggita Daeli
- */
+package kasus2restraurant;
 
 import java.util.Scanner;
 
@@ -17,28 +14,69 @@ public class Restaurant {
     }
 
     public void showMenu() {
-        for(int i = 0; i < menu.length; i++) {
-            if(!menu[i].isOutOfStock()) {
-                System.out.println("Id" + (menu[i].getMenuId()) + " " + (menu[i].getMenuName()) + "["
-                        + menu[i].getMenuStock() + "]" + "\tRp. " + menu[i].getMenuPrice());
+        System.out.println("MENU");
+        for (Menu value : menu) {
+            if (!value.isOutOfStock()) {
+                System.out.println("Id" + (value.getMenuId()) + " " + (value.getMenuName()) + "["
+                        + value.getMenuStock() + "]" + "\tRp. " + value.getMenuPrice());
             }
         }
     }
 
-    public void takeOrder() {
+    public void getOrder() {
         Scanner in = new Scanner(System.in);
-        int id, qty;
+        int[][] menuCart = new int[15][3];
+        int x, id, qty;
+        int total = 0;
+        int numberOrder = 0;
+        String takeOrder = "yes";
+        String again = "yes";
 
-        System.out.println("What menu id you want to order? ");
-        id = in.nextInt();
-        System.out.println("How many? ");
-        qty = in.nextInt();
+        while ("yes".equalsIgnoreCase(takeOrder)) {
+            showMenu();
+            System.out.println("\nMake an order? (yes/no)");
+            takeOrder = in.nextLine();
 
-        for(int i = 0; i < menu.length; i++) {
-            if (menu[i].getMenuId() == id) {
-                int stock = menu[i].getMenuStock() - qty;
-                menu[i].setMenuStock(stock);
+            if ("yes".equalsIgnoreCase(takeOrder)) {
+                numberOrder = 0;
+                while ("yes".equalsIgnoreCase(again)) {
+                    numberOrder++;
+
+                    System.out.println("\nORDER" + numberOrder);
+                    System.out.println("What menu Id you want to order? ");
+                    id = in.nextInt();
+                    System.out.println("How many? ");
+                    qty = in.nextInt();
+
+                    for (Menu value : menu) {
+                        if (value.getMenuId() == id) {
+                            int stock = value.getMenuStock() - qty;
+                            value.setMenuStock(stock);
+                        }
+                    }
+
+                    x = numberOrder - 1;
+                    menuCart[x][0] = id - 1;
+                    menuCart[x][1] = qty;
+                    menuCart[x][2] = (int) menu[id - 1].getMenuPrice() * qty;
+
+                    System.out.println("Order again? (yes/no)");
+                    again = in.next() + in.nextLine();
+                }
+                again = "yes";
             }
+
+            if (numberOrder != 0) {
+                System.out.println("\nYOUR ORDER");
+                for (int i = 0; i < numberOrder; i++) {
+                    System.out.printf("%d %11s %6d\n", menuCart[i][1], menu[menuCart[i][0]].getMenuName(), menuCart[i][2]);
+                }
+                for (int i = 0; i < numberOrder; i++) {
+                    total += menuCart[i][2];
+                }
+                System.out.println("TOTAL EXPENSE : Rp. " + total + ".0");
+            }
+             System.out.println();
         }
     }
 }

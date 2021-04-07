@@ -21,7 +21,8 @@ public class InputTest {
         System.out.print("What is your name? ");
         String name = in.nextLine();
 
-
+        System.out.format("%10s%15s%15s%15s%20s",
+                "Grade", "Last Name", "First Name", "Student Number", "Parent Email");
 
         // display output on console
         System.out.println("Hello, " + name + ", Next year, you'll be " + (age + 1));
