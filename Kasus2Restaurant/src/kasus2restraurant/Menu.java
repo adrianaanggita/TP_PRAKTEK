@@ -1,10 +1,5 @@
 package kasus2restraurant;
 
-/**
- *
- * @author Adriana Anggita Daeli
- */
-
 public class Menu {
     private final int menuId;
     private String menuName;
