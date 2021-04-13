@@ -23,7 +23,7 @@ public class ParamTest
          * Test 2: Methods can change the state of object parameters
          */
         System.out.println("\nTesting tripleSalary:");
-        Employee harry = new Employee("Harry", 50000);
+        Employee harry = new Employee("Harry", 50000);      //make new object
         System.out.println("Before: salary = " + harry.getSalary());
         tripleSalary(harry);
         System.out.println("After: salary = " + harry.getSalary());
@@ -32,7 +32,7 @@ public class ParamTest
          * Test 3: Methods can't attach new objects to object parameters
          */
         System.out.println("\nTesting swap:");
-        Employee a = new Employee("Alice", 70000);
+        Employee a = new Employee("Alice", 70000);          //make a new variable of primitive type
         Employee b = new Employee("Bob", 60000);
         System.out.println("Before: a = " + a.getName());
         System.out.println("Before: b = " + b.getName());

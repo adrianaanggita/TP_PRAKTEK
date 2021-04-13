@@ -24,4 +24,21 @@ class Employee
         double raise = salary * byPercent / 100;
         salary += raise;
     }
+
+    public static void swap(Employee x, Employee y)
+    {
+        Employee temp = x;
+        x = y;
+        y = temp;
+        System.out.println("End of Method: x = " + x.getName());
+        System.out.println("End of Method: y = " + y.getName());
+    }
+}
+
+class EmployeeWrapper {
+    Employee e;
+
+    EmployeeWrapper(Employee e) {
+        this.e = e;
+    }
 }
