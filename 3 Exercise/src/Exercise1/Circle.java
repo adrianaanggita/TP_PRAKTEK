@@ -39,12 +39,12 @@ public class Circle {   // Save as "Circle.java"
         return color;
     }
 
-    /** Set the radius */
+    /** Set the value of radius */
     public void setRadius(double radius) {
         this.radius = radius;
     }
 
-    /** Set the color */
+    /** Set the value of color */
     public void setColor(String color) {
         this.color = color;
     }
@@ -57,7 +57,7 @@ public class Circle {   // Save as "Circle.java"
     /** Return a self-descriptive string of this instance in the form of
      * Circle[radius=?,color=?] */
     public String toString() {
-        return "Circle[radius = " + radius + "color = " + color + "]";
+        return "Circle[radius = " + radius + ", color = " + color + "]";
     }
 
 }
